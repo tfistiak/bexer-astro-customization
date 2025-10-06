@@ -453,8 +453,8 @@
 }
 
 .hover-icon {
-  @apply absolute left-0 right-0 bottom-0;
-  background-color: rgba(134, 195, 58, 0.9);
+  @apply absolute left-0 right-0 bottom-0 bg-primary/90;
+  
   transition: 0.2s ease;
   transform: scale(0.8);
   z-index: 3;
@@ -488,8 +488,8 @@
 }
 
 .hover-overlay {
-  @apply absolute top-0 left-0 text-center w-full h-full opacity-0;
-  background-color: rgba(134, 195, 58, 0.9);
+  @apply absolute top-0 left-0 text-center w-full h-full opacity-0 bg-primary/90;
+  
   transition: 0.4s ease;
 
   a {
