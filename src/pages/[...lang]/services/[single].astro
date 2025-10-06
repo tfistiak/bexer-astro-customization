@@ -77,7 +77,7 @@ const {
       <div class="row mx-auto">
         <aside class="lg:col-4">
           <!-- service list -->
-          <div class="bg-white px-8 py-10 box-shadow mb-12">
+          <div class="bg-white dark:bg-black px-8 py-10 box-shadow mb-12">
             <h5 class="mb-5">{our_services}</h5>
             <ul class="list-styled style-circle space-y-4">
               {
@@ -101,18 +101,18 @@ const {
           <!-- pdf download -->
           {
             pdf && pdf.enable && (
-              <div class="bg-white px-8 py-10 box-shadow mb-12">
+              <div class="bg-white dark:bg-black px-8 py-10 box-shadow mb-12">
                 <h5 class="mb-5">{download_pdf}</h5>
                 <ul class="list-unstyled relative">
                   <li class="flex pb-3 mb-3 border-b border-border items-center">
                     <FaRegFilePdf className="text-primary icon-sm" />
                     <div class="ms-3">
                       <p
-                        class="mb-0 text-text-dark/80"
+                        class="mb-0 text-text-dark/80 dark:text-darkmode-text-dark/80 "
                         set:html={markdownify(pdf.title)}
                       />
                       <span
-                        class="text-text-dark/80"
+                        class="text-text-dark/80 dark:text-darkmode-text-dark/80"
                         set:html={markdownify(pdf.size)}
                       />
                     </div>
@@ -125,7 +125,7 @@ const {
             )
           }
           <!-- quick contact -->
-          <div class="bg-white px-8 py-10 box-shadow mb-12 sticky top-28">
+          <div class="bg-white dark:bg-black px-8 py-10 box-shadow mb-12 sticky top-28">
             <h5 class="mb-5">{quick_contact}</h5>
             <form action={contact_form_action}>
               <input

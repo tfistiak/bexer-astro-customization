@@ -23,12 +23,13 @@ if (!lang) {
 }
 const TAGS_FOLDER = "tags";
 const langCollection: keyof ContentEntryMap = lang as keyof ContentEntryMap;
+const tags = await getTaxonomy(langCollection, TAGS_FOLDER);
 const allTags = await getAllTaxonomy(langCollection, TAGS_FOLDER);
 
 const totalPages: number = Math.ceil(
-  allTags.length / config.settings.pagination
+  tags.length / config.settings.pagination
 );
-const currentTags = allTags.slice(0, config.settings.pagination);
+const currentTags = tags.slice(0, config.settings.pagination);
 ---
 
 <Base title={"Tags"}>

@@ -101,7 +101,7 @@
   li {
     @apply inline-block mr-3 my-4;
     a {
-      @apply inline-block h-11 w-11 rounded-full text-text-dark border border-dark bg-transparent text-center leading-10 hover-ripple;
+      @apply inline-block h-11 w-11 rounded-full text-text-dark dark:text-darkmode-text-dark border border-dark dark:border-darkmode-dark bg-transparent text-center leading-10 hover-ripple;
       &:hover {
         @apply text-white bg-primary border-primary;
 
@@ -782,7 +782,7 @@ blockquote {
   @apply prose-code:px-1 prose-code:text-primary;
   @apply prose-strong:text-text-dark dark:prose-strong:text-darkmode-text-dark;
   @apply prose-a:text-text prose-a:underline hover:prose-a:text-primary;
-  @apply prose-li:text-text marker:text-primary;
+  @apply prose-li:text-text dark:prose-li:text-darkmode-text marker:text-primary;
   @apply prose-table:relative prose-table:overflow-hidden prose-table:rounded-lg prose-table:before:absolute prose-table:before:left-0 prose-table:before:top-0 prose-table:before:h-full prose-table:before:w-full prose-table:before:rounded-[inherit] prose-table:before:border prose-table:before:border-border prose-table:before:content-[""];
   @apply prose-thead:border-border prose-thead:bg-light dark:prose-thead:bg-darkmode-light;
   @apply prose-th:relative prose-th:z-10 prose-th:px-4 prose-th:py-[18px] prose-th:text-text-dark dark:prose-th:text-darkmode-text-dark;

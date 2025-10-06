@@ -1,4 +1,5 @@
 ---
+import Pagination from "@/components/Pagination.astro";
 import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
 import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
@@ -7,6 +8,8 @@ import { humanize } from "@/lib/utils/textConverter";
 import PageHeader from "@/partials/PageHeader.astro";
 import type { ContentEntryMap } from "astro:content";
 const { default_language } = config.settings;
+
+const CATEGORIES_FOLDER = "categories";
 
 export function getStaticPaths() {
   const paths = supportedLang.map((lang) => ({
@@ -21,17 +24,22 @@ if (!lang) {
 }
 
 const langCollection: keyof ContentEntryMap = lang as keyof ContentEntryMap;
-const categories = await getTaxonomy(langCollection, "categories");
-const allCategories = await getAllTaxonomy(langCollection, "categories");
+const categories = await getTaxonomy(langCollection, CATEGORIES_FOLDER);
+const allCategories = await getAllTaxonomy(langCollection, CATEGORIES_FOLDER);
+
+const totalPages: number = Math.ceil(
+  categories.length / config.settings.pagination
+);
+const currentCategories = categories.slice(0, config.settings.pagination);
 ---
 
 <Base title={"Categories"}>
   <PageHeader title={"Categories"} />
   <section class="section">
     <div class="container text-center">
-      <ul>
+      <ul class="mb-10 inline-block">
         {
-          categories.map((category: string) => {
+          currentCategories.map((category: string) => {
             const count = allCategories.filter((c) => c === category).length;
             return (
               <li class="inline-block m-2">
@@ -49,6 +57,12 @@ const allCategories = await getAllTaxonomy(langCollection, "categories");
           })
         }
       </ul>
+
+      <Pagination
+        section={CATEGORIES_FOLDER}
+        currentPage={1}
+        totalPages={totalPages}
+      />
     </div>
   </section>
 </Base>
