@@ -1,5 +1,6 @@
 ---
 import BlogCard from "@/components/BlogCard.astro";
+import Pagination from "@/components/Pagination.astro";
 import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
@@ -55,6 +56,15 @@ const BLOG_FOLDER = "blog";
 const posts = await getSinglePage(BLOG_FOLDER, lang as keyof ContentEntryMap);
 const filterByTags = taxonomyFilter(posts, "tags", tag!);
 const sortedPosts = sortByDate(filterByTags);
+
+// pagination
+const pageSizeSetting = config.settings.pagination;
+const pageSize = pageSizeSetting && pageSizeSetting > 0
+  ? pageSizeSetting
+  : Math.max(1, sortedPosts.length);
+const totalPages = Math.max(1, Math.ceil(sortedPosts.length / pageSize));
+const currentPage = 1;
+const currentPosts = sortedPosts.slice(0, pageSize);
 ---
 
 <Base title={tag}>
@@ -63,12 +73,19 @@ const sortedPosts = sortByDate(filterByTags);
     <div class="container">
       <div class="row">
         {
-          sortedPosts.map((post) => (
+          currentPosts.map((post) => (
             <div class="mb-14 md:col-6 lg:col-4">
               <BlogCard data={post} />
             </div>
           ))
         }
+      </div>
+      <div class="mt-10 flex justify-center">
+        <Pagination
+          section={`tags/${tag}`}
+          currentPage={currentPage}
+          totalPages={totalPages}
+        />
       </div>
     </div>
   </div>

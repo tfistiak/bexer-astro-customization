@@ -4,7 +4,7 @@ meta_title: ""
 description: "this is meta description"
 date: 2023-04-08T05:00:00Z
 image: "/images/blog/post-1.png"
-categories: ["Investment Planning", "Valuable Idea"]
+categories: ["Investment Planning", "Valuable Idea", "Afiliated Marketing"]
 author: "John Doe"
 tags: ["Elements", "Business"]
 draft: false

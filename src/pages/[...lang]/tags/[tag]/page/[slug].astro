@@ -1,0 +1,96 @@
+---
+import BlogCard from "@/components/BlogCard.astro";
+import Pagination from "@/components/Pagination.astro";
+import config from "@/config/config.json";
+import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { getTaxonomy } from "@/lib/taxonomyParser.astro";
+import { supportedLang } from "@/lib/utils/languageParser";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import taxonomyFilter from "@/lib/utils/taxonomyFilter";
+import PageHeader from "@/partials/PageHeader.astro";
+import type { ContentEntryMap } from "astro:content";
+
+export async function getStaticPaths() {
+  const BLOG_FOLDER = "blog";
+  const { default_language } = config.settings;
+
+  const langPaths = await Promise.all(
+    supportedLang.map(async (lang) => {
+      const langParam = lang || default_language;
+      const langKey = langParam as keyof ContentEntryMap;
+      const posts = await getSinglePage(BLOG_FOLDER, langKey);
+      const tags = await getTaxonomy(langParam, "tags");
+
+      const pathsForLang: { params: { lang: string | undefined; tag: string; slug: string } }[] = [];
+
+      for (const currentTag of tags) {
+        const filtered = taxonomyFilter(posts, "tags", currentTag);
+        const pageSizeSetting = config.settings.pagination;
+        const pageSize = pageSizeSetting && pageSizeSetting > 0
+          ? pageSizeSetting
+          : Math.max(1, filtered.length);
+        const totalPages = Math.ceil(filtered.length / pageSize);
+
+        for (let page = 2; page <= totalPages; page++) {
+          pathsForLang.push({
+            params: {
+              lang: lang || undefined,
+              tag: currentTag,
+              slug: page.toString(),
+            },
+          });
+        }
+      }
+
+      return pathsForLang;
+    }),
+  );
+
+  return langPaths.flat();
+}
+
+const BLOG_FOLDER = "blog";
+const { default_language } = config.settings;
+
+let { tag, slug, lang } = Astro.params;
+const tagParam = tag as string;
+const activeLang = (lang ?? default_language) as keyof ContentEntryMap;
+
+const posts = await getSinglePage(BLOG_FOLDER, activeLang);
+const filterByTags = taxonomyFilter(posts, "tags", tagParam);
+const sortedPosts = sortByDate(filterByTags);
+const pageSizeSetting = config.settings.pagination;
+const pageSize = pageSizeSetting && pageSizeSetting > 0
+  ? pageSizeSetting
+  : Math.max(1, sortedPosts.length);
+const totalPages = Math.max(1, Math.ceil(sortedPosts.length / pageSize));
+const currentPage = slug && !isNaN(Number(slug)) ? Number(slug) : 1;
+const indexOfLastPost = currentPage * pageSize;
+const indexOfFirstPost = indexOfLastPost - pageSize;
+const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
+---
+
+<Base title={tagParam}>
+  <PageHeader title={tagParam} />
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        {
+          currentPosts.map((post) => (
+            <div class="mb-14 md:col-6 lg:col-4">
+              <BlogCard data={post} />
+            </div>
+          ))
+        }
+      </div>
+      <div class="mt-10 flex justify-center">
+        <Pagination
+          section={`tags/${tagParam}`}
+          currentPage={currentPage}
+          totalPages={totalPages}
+        />
+      </div>
+    </div>
+  </div>
+</Base>
