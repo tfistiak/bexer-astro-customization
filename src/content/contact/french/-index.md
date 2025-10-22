@@ -1,6 +1,7 @@
 ---
 title: "Contact"
 meta_title: ""
-description: "this is meta description"
+description: "Contactez-nous pour toute demande ou assistance."
+image: ""
 draft: false
 ---

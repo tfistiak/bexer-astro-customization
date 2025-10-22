@@ -15,7 +15,7 @@ export async function getStaticPaths() {
     supportedLang.map(async (lang) => {
       const authors = await getSinglePage(
         "authors",
-        lang as keyof ContentEntryMap,
+        lang as keyof ContentEntryMap
       );
 
       return authors.map((author) => ({
@@ -28,7 +28,7 @@ export async function getStaticPaths() {
           lang,
         },
       }));
-    }),
+    })
   );
   return paths.flat();
 }
@@ -41,7 +41,7 @@ const { Content } = await render(author);
 // get all posts by author
 const posts = await getSinglePage("blog", lang as keyof ContentEntryMap);
 const postFilterByAuthor = posts.filter(
-  (post) => slugify(post.data.author) === slugify(title),
+  (post) => slugify(post.data.author) === slugify(title)
 );
 ---
 
@@ -78,7 +78,7 @@ const postFilterByAuthor = posts.filter(
         </div>
       </div>
 
-      <div class="row justify-center pb-16 pt-14">
+      <div class="row justify-center pt-14">
         {
           postFilterByAuthor.map((post) => (
             <div class="mb-12 md:col-6 lg:col-4">

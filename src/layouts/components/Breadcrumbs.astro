@@ -45,11 +45,11 @@ paths.forEach((label: string, i: number) => {
         <li class="mx-1 capitalize" role="listitem">
           {index > 0 && <span class="inline-block mr-1">/</span>}
           {index !== parts.length - 1 ? (
-            <a class="text-primary " {...attrs}>
+            <a class="text-primary dark:text-darkmode-primary" {...attrs}>
               {label}
             </a>
           ) : (
-            <span class="text-light ">{label}</span>
+            <span class="text-light dark:text-darkmode-text">{label}</span>
           )}
         </li>
       ))

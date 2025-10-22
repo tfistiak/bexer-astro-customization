@@ -1,5 +1,6 @@
 ---
 title: "Business Consulting Copy"
+meta_title: ""
 description: "this is meta description for service page."
 image: "/images/service/service-1.jpg"
 icon: FaChartBar
@@ -8,6 +9,7 @@ pdf:
   title: "Download Brochure"
   file: "#"
   size: "1.5mb"
+draft: false
 ---
 
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.

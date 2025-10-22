@@ -70,10 +70,10 @@ export async function getStaticPaths() {
               <li class="inline-block m-2">
                 <a
                   href={slugSelector(`/categories/${category}`, lang)}
-                  class="btn btn-primary bg-white  dark:bg-black text-text dark:text-darkmode-text font-normal border-none box-shadow duration-200 hover:bg-primary hover:text-white btn-sm mr-1"
+                  class="btn btn-primary bg-white dark:bg-black text-text dark:text-darkmode-text font-normal border-none box-shadow duration-200 hover:bg-primary dark:hover:bg-darkmode-primary hover:text-white btn-sm mr-1"
                 >
                   {humanize(category)}{" "}
-                  <span class="ml-2 rounded bg-body dark:bg-darkmode-body px-2 text-text-dark dark:text-darkmode-text-dark border border-primary">
+                  <span class="ml-2 rounded bg-body dark:bg-darkmode-body px-2 text-text-dark dark:text-darkmode-text-dark border border-primary dark:border-darkmode-primary">
                     {count}
                   </span>
                 </a>

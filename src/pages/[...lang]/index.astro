@@ -24,20 +24,21 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params;
 const homepage = await getListPage("homepage", lang as keyof ContentEntryMap);
+
 const { hero_slider, banner_feature, funfacts, feature, latest_news } =
   homepage[0].data;
 
 const aboutIndex = await getListPage("about", lang as keyof ContentEntryMap);
 const serviceIndex = await getListPage(
   "services",
-  lang as keyof ContentEntryMap,
+  lang as keyof ContentEntryMap
 );
 const services = await getSinglePage("services", lang as keyof ContentEntryMap);
 const teamIndex = await getListPage("team", lang as keyof ContentEntryMap);
 const team = await getSinglePage("team", lang as keyof ContentEntryMap);
 const projectIndex = await getListPage(
   "projects",
-  lang as keyof ContentEntryMap,
+  lang as keyof ContentEntryMap
 );
 const projects = await getSinglePage("projects", lang as keyof ContentEntryMap);
 const posts = await getSinglePage("blog", lang as keyof ContentEntryMap);
@@ -45,13 +46,13 @@ const posts = await getSinglePage("blog", lang as keyof ContentEntryMap);
 const testimonial = await getSinglePage(
   "testimonials",
   lang as keyof ContentEntryMap,
-  "testimonial",
+  "testimonial"
 );
 
 const callToAction = await getSinglePage(
   "callToAction",
   lang as keyof ContentEntryMap,
-  "call-to-action",
+  "call-to-action"
 );
 ---
 

@@ -10,8 +10,8 @@ const { pathname } = Astro.url;
 const groups = [
   ...new Set(
     projects.map((project: { data: { category: string } }) =>
-      project.data.category.toLocaleLowerCase(),
-    ),
+      project.data.category.toLocaleLowerCase()
+    )
   ),
 ];
 ---
@@ -75,7 +75,7 @@ const groups = [
               {/* project-info  */}
               <div class="ms-4">
                 <h6
-                  class="text-primary text-base mb-2"
+                  class="text-primary dark:text-darkmode-primary text-base mb-2"
                   set:html={markdownify(project.data.category)}
                 />
                 <h5 class="text-text-dark dark:text-darkmode-text-dark  hover:text-primary duration-200">
@@ -200,6 +200,7 @@ const groups = [
         if (list.classList.contains("selected")) {
           button?.classList.add("text-primary");
           button?.classList.remove("text-text-dark");
+          button?.classList.remove("dark:text-darkmode-text-dark");
         }
 
         button?.addEventListener("click", function () {
@@ -208,11 +209,13 @@ const groups = [
             const btn = list.querySelector("button");
             btn?.classList.remove("text-primary");
             btn?.classList.add("text-text-dark");
+            btn?.classList.add("dark:text-darkmode-text-dark");
           });
 
           this.parentElement?.classList.add("selected");
           this.classList.add("text-primary");
           this.classList.remove("text-text-dark");
+          this.classList.remove("dark:text-darkmode-text-dark");
 
           const keyword = list.getAttribute("data-target");
           shuffleInstance.filter(keyword as string);

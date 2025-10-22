@@ -19,7 +19,7 @@ export async function getStaticPaths() {
     supportedLang.map(async (lang) => {
       const services = await getSinglePage(
         "services",
-        lang as keyof ContentEntryMap,
+        lang as keyof ContentEntryMap
       );
 
       return services.map((service) => ({
@@ -31,7 +31,7 @@ export async function getStaticPaths() {
           service,
         },
       }));
-    }),
+    })
   );
   return paths.flat();
 }
@@ -43,7 +43,7 @@ const { Content } = await render(service);
 const land = getLangFromUrl(Astro.url);
 const allServices = await getSinglePage(
   "services",
-  land as keyof ContentEntryMap,
+  land as keyof ContentEntryMap
 );
 
 const serviceSlugs = allServices.map((service) => {
@@ -87,7 +87,7 @@ const {
                       href={`/services/${slug}`}
                       class={
                         service.id.split("/")[1] === `${slug}`
-                          ? "text-primary"
+                          ? "text-primary dark:text-darkmode-primary"
                           : "text-text" + "block no-underline"
                       }
                     >
@@ -105,10 +105,10 @@ const {
                 <h5 class="mb-5">{download_pdf}</h5>
                 <ul class="list-unstyled relative">
                   <li class="flex pb-3 mb-3 border-b border-border items-center">
-                    <FaRegFilePdf className="text-primary icon-sm" />
+                    <FaRegFilePdf className="text-primary dark:text-darkmode-primary text-4xl" />
                     <div class="ms-3">
                       <p
-                        class="mb-0 text-text-dark/80 dark:text-darkmode-text-dark/80 "
+                        class="mb-0 text-text-dark/80 dark:text-darkmode-text-dark/80"
                         set:html={markdownify(pdf.title)}
                       />
                       <span
@@ -117,7 +117,7 @@ const {
                       />
                     </div>
                     <a href={pdf.file} class="text-text ml-auto stretched-link">
-                      <FaDownload className="icon-xs" />
+                      <FaDownload className="text-2xl" />
                     </a>
                   </li>
                 </ul>
@@ -125,42 +125,50 @@ const {
             )
           }
           <!-- quick contact -->
-          <div class="bg-white dark:bg-black px-8 py-10 box-shadow mb-12 sticky top-28">
+          <div
+            class="bg-white dark:bg-black px-8 py-10 box-shadow mb-12 sticky top-28"
+          >
             <h5 class="mb-5">{quick_contact}</h5>
             <form action={contact_form_action}>
               <input
                 type="text"
                 name="name"
                 id="name"
-                class="form-control form-control-sm w-full border-0 rounded-0 box-shadow mb-3"
+                class="form-input"
                 placeholder={placeholder_name}
+                required
               />
               <input
                 type="email"
                 name="mail"
                 id="mail"
-                class="form-control form-control-sm w-full border-0 rounded-0 box-shadow mb-3"
+                class="form-input"
                 placeholder={placeholder_email}
+                required
               />
               <input
                 type="tel"
                 name="phone"
                 id="phone"
-                class="form-control form-control-sm w-full border-0 rounded-0 box-shadow mb-3"
+                class="form-input"
                 placeholder={placeholder_phone}
+                required
               />
               <input
                 type="text"
                 name="subject"
                 id="subject"
-                class="form-control form-control-sm w-full border-0 rounded-0 box-shadow mb-3"
+                class="form-input"
                 placeholder={placeholder_subject}
+                required
               />
               <textarea
                 name="message"
                 id="message"
-                class="form-control form-control-sm w-full border-0 rounded-0 box-shadow mb-3 py-3 px-4"
-                placeholder={placeholder_message}></textarea>
+                class="form-input"
+                placeholder={placeholder_message}
+                rows="6"
+                required></textarea>
               <button type="submit" value="send" class="btn btn-primary">
                 {send_message}
               </button>

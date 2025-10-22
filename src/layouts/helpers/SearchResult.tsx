@@ -77,7 +77,8 @@ const SearchResult = ({
 
   // match marker
   const matchMarker = (text: string, substring: string) => {
-    const parts = text.split(new RegExp(`(${substring})`, "gi"));
+    const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const parts = text.split(new RegExp(`(${escapeRegExp(substring)})`, "gi"));
     return parts.map((part, index) =>
       part.toLowerCase() === substring.toLowerCase() ? (
         <mark key={index}>{part}</mark>
@@ -89,7 +90,8 @@ const SearchResult = ({
 
   // match underline
   const matchUnderline = (text: string, substring: string) => {
-    const parts = text?.split(new RegExp(`(${substring})`, "gi"));
+    const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const parts = text?.split(new RegExp(`(${escapeRegExp(substring)})`, "gi"));
     return parts?.map((part, index) =>
       part.toLowerCase() === substring.toLowerCase() ? (
         <span key={index} className="underline">
@@ -194,8 +196,8 @@ const SearchResult = ({
                                   {matchUnderline(category, searchString)}
                                   {item.frontmatter.categories &&
                                     index !==
-                                      item.frontmatter.categories.length -
-                                        1 && <>, </>}
+                                    item.frontmatter.categories.length -
+                                    1 && <>, </>}
                                 </span>
                               ),
                             )}
@@ -217,7 +219,7 @@ const SearchResult = ({
                                 {matchUnderline(tag, searchString)}
                                 {item.frontmatter.tags &&
                                   index !==
-                                    item.frontmatter.tags.length - 1 && <>, </>}
+                                  item.frontmatter.tags.length - 1 && <>, </>}
                               </span>
                             ))}
                           </div>

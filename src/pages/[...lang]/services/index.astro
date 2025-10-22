@@ -17,8 +17,12 @@ const lang = getLangFromUrl(Astro.url);
 
 const serviceIndex = await getListPage(
   "services",
-  lang as keyof ContentEntryMap,
+  lang as keyof ContentEntryMap
 );
+
+if (serviceIndex[0].data.draft) {
+  return Astro.redirect("/404");
+}
 
 const services = await getSinglePage("services", lang as keyof ContentEntryMap);
 ---

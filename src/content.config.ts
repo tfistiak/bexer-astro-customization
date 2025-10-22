@@ -1,6 +1,15 @@
 import { glob } from "astro/loaders";
 import { defineCollection, z } from "astro:content";
 
+const commonFields = {
+  title: z.string(),
+  description: z.string(),
+  meta_title: z.string().optional(),
+  date: z.date().optional(),
+  image: z.string().optional(),
+  draft: z.boolean().optional(),
+};
+
 const homepageCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/homepage" }),
   schema: z.object({
@@ -67,11 +76,7 @@ const homepageCollection = defineCollection({
 const blogCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/blog" }),
   schema: z.object({
-    title: z.string(),
-    meta_title: z.string().optional(),
-    description: z.string().optional(),
-    date: z.date().optional(),
-    image: z.string().optional(),
+    ...commonFields,
     author: z.string().default("Admin"),
     categories: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),
@@ -83,6 +88,7 @@ const blogCollection = defineCollection({
 const projectsCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/projects" }),
   schema: z.object({
+    ...commonFields,
     subtitle: z.string().optional(),
     title: z.string(),
     meta_title: z.string().optional(),
@@ -107,11 +113,9 @@ const projectsCollection = defineCollection({
 const authorsCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/authors" }),
   schema: z.object({
-    title: z.string(),
-    meta_title: z.string().optional(),
+    ...commonFields,
     email: z.string().optional(),
     image: z.string().optional(),
-    description: z.string().optional(),
     designation: z.string().optional(),
     social: z
       .array(
@@ -124,7 +128,6 @@ const authorsCollection = defineCollection({
           .optional(),
       )
       .optional(),
-    draft: z.boolean().optional(),
   }),
 });
 
@@ -132,25 +135,18 @@ const authorsCollection = defineCollection({
 const pagesCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/pages" }),
   schema: z.object({
-    title: z.string(),
-    meta_title: z.string().optional(),
-    description: z.string().optional(),
-    image: z.string().optional(),
-    draft: z.boolean().optional(),
+    ...commonFields,
   }),
 });
 
+// Team collection schema
 const teamCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/team" }),
   schema: z.object({
-    title: z.string(),
-    meta_title: z.string().optional(),
+    ...commonFields,
     subtitle: z.string().optional(),
-    description: z.string(),
     bg_image: z.string().optional(),
-    draft: z.boolean().optional(),
     name: z.string().optional(),
-    image: z.string().optional(),
     designation: z.string().optional(),
     social: z
       .array(
@@ -177,22 +173,15 @@ const teamCollection = defineCollection({
 const contactCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/contact" }),
   schema: z.object({
-    title: z.string(),
-    meta_title: z.string().optional(),
-    description: z.string(),
-    image: z.string().optional(),
-    draft: z.boolean().optional(),
+    ...commonFields,
   }),
 });
 
+// About collection schema
 const aboutCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/about" }),
   schema: z.object({
-    title: z.string(),
-    meta_title: z.string(),
-    description: z.string(),
-    image: z.string().optional(),
-    draft: z.boolean(),
+    ...commonFields,
     philosophy_section: z.object({
       enable: z.boolean(),
       items: z.array(
@@ -219,16 +208,14 @@ const aboutCollection = defineCollection({
   }),
 });
 
+// Service collection schema
 const serviceCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/services" }),
   schema: z.object({
-    title: z.string(),
-    meta_title: z.string().optional(),
+    ...commonFields,
     subtitle: z.string().optional(),
-    description: z.string(),
     bg_image: z.string().optional(),
     draft: z.boolean().optional(),
-    image: z.string().optional(),
     icon: z.string().optional(),
     pdf: z
       .object({
@@ -237,40 +224,6 @@ const serviceCollection = defineCollection({
         file: z.string(),
         size: z.string(),
       })
-      .optional(),
-  }),
-});
-
-// Content schema
-const contentSchema = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/contact" }),
-  schema: z.object({
-    banner: z
-      .object({
-        title: z.string(),
-        content: z.string(),
-        image: z.string(),
-        button: z.object({
-          enable: z.boolean(),
-          label: z.string(),
-          link: z.string(),
-        }),
-      })
-      .optional(),
-    features: z
-      .array(
-        z.object({
-          title: z.string(),
-          image: z.string(),
-          content: z.string(),
-          bulletpoints: z.array(z.string()),
-          button: z.object({
-            enable: z.boolean(),
-            label: z.string().optional(),
-            link: z.string().optional(),
-          }),
-        }),
-      )
       .optional(),
   }),
 });
@@ -317,8 +270,8 @@ const callToActionSchema = defineCollection({
   }),
 });
 
-// Export collections
 export const collections = {
+  // pages collections
   homepage: homepageCollection,
   blog: blogCollection,
   projects: projectsCollection,
@@ -328,7 +281,8 @@ export const collections = {
   contact: contactCollection,
   about: aboutCollection,
   services: serviceCollection,
-  content: contentSchema,
+
+  // sections collections
   testimonials: testimonialCollection,
   callToAction: callToActionSchema,
 };

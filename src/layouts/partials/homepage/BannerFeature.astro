@@ -13,7 +13,7 @@ const { bannerFeature } = Astro.props;
           {bannerFeature.feature_item.map(
             (item: { name: string; content: string; icon: string }) => (
               <div class="lg:col-3 sm:col-6 group">
-                <div class="bg-white dark:bg-darkmode-light py-12 px-4 text-center box-shadow transition hover:bg-secondary flex flex-col items-center duration-200">
+                <div class="bg-white dark:bg-darkmode-light py-12 px-4 text-center box-shadow transition hover:bg-secondary dark:hover:bg-darkmode-secondary flex flex-col items-center duration-200">
                   <div class="icon-bg mb-4 water-wave flex items-center justify-center">
                     <DynamicIcon
                       icon={item.icon}
@@ -30,7 +30,7 @@ const { bannerFeature } = Astro.props;
                   />
                 </div>
               </div>
-            ),
+            )
           )}
         </div>
       </div>

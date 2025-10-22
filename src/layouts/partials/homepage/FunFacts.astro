@@ -8,7 +8,9 @@ const { funfacts } = Astro.props;
 
 <section class="funfacts">
   <div class="container overflow-hidden">
-    <div class="row bg-secondary px-5 py-10 justify-center items-center">
+    <div
+      class="row bg-secondary dark:bg-darkmode-secondary px-5 py-10 justify-center items-center"
+    >
       {
         funfacts?.funfacts_item?.map(
           (fact: { icon: string; name: string; count: number }) => (
@@ -16,7 +18,7 @@ const { funfacts } = Astro.props;
               <div class="flex items-center">
                 <DynamicIcon
                   icon={fact.icon}
-                  className="icon-lg me-3 text-primary"
+                  className="text-6xl me-3 text-primary dark:text-darkmode-primary"
                 />
                 <div>
                   <h3 class="h1 text-white mb-0">
@@ -33,7 +35,7 @@ const { funfacts } = Astro.props;
                 </div>
               </div>
             </div>
-          ),
+          )
         )
       }
     </div>

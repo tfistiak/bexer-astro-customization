@@ -18,6 +18,10 @@ export function getStaticPaths() {
 const { lang } = Astro.params;
 const contact = await getListPage("contact", lang as keyof ContentEntryMap);
 
+if (contact[0].data.draft) {
+  return Astro.redirect("/404");
+}
+
 const { contact_form_action, address, phone, email } = config.params;
 const { title, description, meta_title, image } = contact[0].data;
 
@@ -49,8 +53,13 @@ const {
       <div class="row justify-center g-5">
         <!-- Addresses -->
         <div class="col-10 sm:col-8 md:col-4">
-          <div class="bg-white dark:bg-black box-shadow text-center p-5 md:p-12">
-            <FaMapMarkerAlt className="text-primary mx-auto mb-4" size={56} />
+          <div
+            class="bg-white dark:bg-black box-shadow text-center p-5 md:p-12"
+          >
+            <FaMapMarkerAlt
+              className="text-primary dark:text-darkmode-primary mx-auto mb-4"
+              size={56}
+            />
 
             <h4 class="mb-4 text-h5">{our_address}</h4>
             <ul class="text-balance space-y-1">
@@ -60,8 +69,13 @@ const {
         </div>
         <!-- phone -->
         <div class="col-10 sm:col-8 md:col-4">
-          <div class="bg-white dark:bg-black box-shadow text-center p-5 md:p-12">
-            <FaPhoneAlt className="text-primary mx-auto mb-4" size={56} />
+          <div
+            class="bg-white dark:bg-black box-shadow text-center p-5 md:p-12"
+          >
+            <FaPhoneAlt
+              className="text-primary dark:text-darkmode-primary mx-auto mb-4"
+              size={56}
+            />
             <h4 class="mb-4 text-h5">{phone_number}</h4>
             <ul class="text-balance">
               <li>{phone}</li>
@@ -70,8 +84,13 @@ const {
         </div>
         <!-- Mail -->
         <div class="col-10 sm:col-8 md:col-4">
-          <div class="bg-white dark:bg-black box-shadow text-center p-5 md:p-12">
-            <FaEnvelope className="text-primary mx-auto mb-4" size={56} />
+          <div
+            class="bg-white dark:bg-black box-shadow text-center p-5 md:p-12"
+          >
+            <FaEnvelope
+              className="text-primary dark:text-darkmode-primary mx-auto mb-4"
+              size={56}
+            />
             <h4 class="mb-4 text-h5">{message_us}</h4>
             <ul class="text-balance">
               <li>{email}</li>
@@ -103,7 +122,7 @@ const {
                 type="text"
                 name="name"
                 id="name"
-                class="form-control border-0 rounded-none box-shadow mb-5"
+                class="form-input box-shadow mb-5 px-8 py-5"
                 placeholder={placeholder_name}
               />
             </div>
@@ -112,7 +131,7 @@ const {
                 type="email"
                 name="mail"
                 id="mail"
-                class="form-control border-0 rounded-none box-shadow mb-5"
+                class="form-input box-shadow mb-5 px-8 py-5"
                 placeholder={placeholder_email}
               />
             </div>
@@ -121,7 +140,7 @@ const {
                 type="text"
                 name="phone"
                 id="phone"
-                class="form-control border-0 rounded-none box-shadow mb-5"
+                class="form-input box-shadow mb-5 px-8 py-5"
                 placeholder={placeholder_phone}
               />
             </div>
@@ -130,7 +149,7 @@ const {
                 type="text"
                 name="subject"
                 id="subject"
-                class="form-control border-0 rounded-none box-shadow mb-5"
+                class="form-input box-shadow mb-5 px-8 py-5"
                 placeholder={placeholder_subject}
               />
             </div>
@@ -138,7 +157,8 @@ const {
               <textarea
                 name="message"
                 id="message"
-                class="form-control border-0 rounded-none box-shadow mb-12 py-3 px-4"
+                class="form-input box-shadow mb-5 px-8 py-5"
+                rows="6"
                 placeholder={placeholder_message}></textarea>
             </div>
             <div class="col-12">

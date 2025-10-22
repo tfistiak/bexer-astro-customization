@@ -1,5 +1,6 @@
 ---
 title: "Alex Monatinmo"
+meta_title: ""
 description: "this is meta description"
 image: "/images/team/team-2.jpg"
 designation: "Designer"
@@ -31,6 +32,7 @@ skills:
 
   - label: Communication
     percentage: 95%
+draft: false
 ---
 
 #### Historique de travail et commentaires

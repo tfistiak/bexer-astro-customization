@@ -19,15 +19,41 @@
 }
 
 .nav-link {
-  @apply text-text-dark dark:text-darkmode-text-dark hover:text-primary block p-3 font-semibold transition lg:px-2 lg:py-4 uppercase;
+  @apply text-text-dark dark:text-darkmode-text-dark hover:text-primary dark:hover:text-darkmode-primary block p-3 font-semibold transition lg:px-2 lg:py-4 uppercase;
 }
 
 .nav-dropdown {
   @apply ml-0;
 }
 
+.nav-dropdown > span {
+  @apply cursor-pointer;
+}
+
 .nav-dropdown-list {
-  @apply z-10 min-w-[180px] max-w-[300px] mx-auto box-shadow bg-body dark:bg-darkmode-body p-4 top-12;
+  @apply z-10 min-w-[180px] max-w-[300px] mx-auto box-shadow bg-body dark:bg-darkmode-body p-4 lg:top-12;
+}
+
+/* Mobile: click to toggle */
+@media (max-width: 1023px) {
+  .nav-dropdown-list {
+    @apply hidden;
+  }
+
+  .nav-dropdown.active .nav-dropdown-list {
+    @apply block;
+  }
+}
+
+/* Desktop: hover to show */
+@media (min-width: 1024px) {
+  .nav-dropdown-list {
+    @apply invisible absolute block opacity-0 transition-all duration-300;
+  }
+
+  .nav-dropdown:hover .nav-dropdown-list {
+    @apply visible opacity-100;
+  }
 }
 
 .nav-dropdown-item {
@@ -35,7 +61,7 @@
 }
 
 .nav-dropdown-link {
-  @apply block py-1 font-semibold text-text-dark dark:text-darkmode-text-dark transition hover:text-primary;
+  @apply block py-1 font-semibold text-text-dark dark:text-darkmode-text-dark transition hover:text-primary dark:hover:text-darkmode-primary;
 }
 
 /* theme-switcher */
@@ -51,8 +77,6 @@
   }
 
   span {
-    @apply  flex h-6 w-6 items-center justify-center rounded-full bg-secondary dark:bg-white transition-all duration-300;
+    @apply flex h-6 w-6 items-center justify-center rounded-full bg-dark dark:bg-darkmode-dark transition-all duration-300;
   }
-
-
 }

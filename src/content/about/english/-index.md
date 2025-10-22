@@ -1,7 +1,7 @@
 ---
 title: "About Us"
 meta_title: "About"
-description: "this is meta description"
+description: "We are a team of dedicated professionals committed to delivering high-quality services to our clients."
 image: ""
 draft: false
 
@@ -9,7 +9,7 @@ philosophy_section:
   enable: true
   items:
     - title: "Our Mission"
-      content: "Lorem ipsum dolor sit amet consectetur adip isicing elit sed do eiusmod tempor incididunt ut labore."
+      content: "Lorem ipsum dolor sit amet consectetur isicing elit sed do eiusmod tempor incididunt ut labore."
       list:
         - "Quality Services"
         - "Clients Satisfaction"

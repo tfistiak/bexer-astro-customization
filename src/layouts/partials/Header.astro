@@ -32,7 +32,7 @@ if (disabledLanguages.includes(lang)) {
 
 {
   top_header && (
-    <div class="bg-secondary pt-4 pb-2">
+    <div class="bg-secondary dark:bg-darkmode-secondary pt-4 pb-2">
       <div class="container">
         <div class="row items-center gy-2">
           {/* social icons  */}
@@ -63,7 +63,10 @@ if (disabledLanguages.includes(lang)) {
                   class="text-white/80 hover:text-primary/80 inline-block lg:px-3 px-2 py-1 md:py-0 text-sm duration-200 leading-6"
                   href={`tel:${phone}`}
                 >
-                  {call_now}: <span class="text-primary">{phone}</span>
+                  {call_now}:{" "}
+                  <span class="text-primary dark:text-darkmode-primary">
+                    {phone}
+                  </span>
                 </a>
               </li>
             </ul>
@@ -133,7 +136,7 @@ if (disabledLanguages.includes(lang)) {
                       <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                     </svg>
                   </span>
-                  <ul class="nav-dropdown-list hidden group-hover:block lg:invisible lg:absolute lg:block lg:opacity-0 lg:group-hover:visible lg:group-hover:opacity-100">
+                  <ul class="nav-dropdown-list">
                     {menu.children?.map(
                       (child: { name: string; url: string }) => (
                         <li class="nav-dropdown-item">
@@ -188,7 +191,7 @@ if (disabledLanguages.includes(lang)) {
       {
         settings.search && (
           <button
-            class="border-border text-text-dark dark:text-darkmode-text-dark hover:text-primary  mr-5 inline-block border-r pr-5 text-xl  "
+            class="border-border text-text-dark dark:text-darkmode-text-dark hover:text-primary dark:hover:text-darkmode-primary  mr-5 inline-block border-r pr-5 text-xl  "
             aria-label="search"
             data-search-trigger
           >
@@ -245,17 +248,31 @@ if (disabledLanguages.includes(lang)) {
         }
       }
     });
-  });
 
-  // Dropdown Menu Toggler For Mobile
-  const dropdownMenuToggler = document.querySelectorAll(
-    ".nav-dropdown > .nav-link"
-  ) as NodeListOf<HTMLElement>;
+    // Dropdown Menu Toggler For Mobile
+    const dropdownMenuToggler = document.querySelectorAll(
+      ".nav-dropdown > span"
+    ) as NodeListOf<HTMLElement>;
 
-  dropdownMenuToggler.forEach((toggler) => {
-    toggler?.addEventListener("click", (e: Event) => {
-      const target = e.target as HTMLElement;
-      target.parentElement?.classList.toggle("active");
+    dropdownMenuToggler.forEach((toggler) => {
+      toggler?.addEventListener("click", (e: Event) => {
+        // Only toggle on mobile (< lg breakpoint)
+        if (window.innerWidth < 1024) {
+          e.preventDefault();
+          const target = e.target as HTMLElement;
+          const parentDropdown = target.closest(".nav-dropdown");
+
+          // Close other dropdowns
+          document.querySelectorAll(".nav-dropdown").forEach((dropdown) => {
+            if (dropdown !== parentDropdown) {
+              dropdown.classList.remove("active");
+            }
+          });
+
+          // Toggle current dropdown
+          parentDropdown?.classList.toggle("active");
+        }
+      });
     });
   });
 </script>

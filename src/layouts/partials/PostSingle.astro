@@ -24,7 +24,7 @@ if (!lang) {
 
 const posts = await getSinglePage(
   COLLECTION_FOLDER,
-  lang as keyof ContentEntryMap,
+  lang as keyof ContentEntryMap
 );
 const similarPosts = similarItems(post, posts);
 const { Content } = await render(post);
@@ -33,7 +33,7 @@ const { title, description, author, image, date, tags } = post.data;
 const langCollection: keyof ContentEntryMap = lang as keyof ContentEntryMap;
 const allCategoriesForCount = await getAllTaxonomy(
   langCollection,
-  "categories",
+  "categories"
 );
 const allCategories = await getTaxonomy(langCollection, "categories");
 const allTags = await getTaxonomy(langCollection, "tags");
@@ -91,7 +91,7 @@ const {
                 tags.map((tag: string) => (
                   <li class="inline-block">
                     <a
-                      class="btn btn-primary bg-white dark:bg-black text-text dark:text-darkmode-text font-normal border-none box-shadow duration-200 hover:bg-primary hover:text-white btn-sm mr-1"
+                      class="btn btn-primary bg-white dark:bg-black text-text dark:text-darkmode-text font-normal border-none box-shadow duration-200 hover:bg-primary dark:hover:bg-darkmode-primary hover:text-white btn-sm mr-1"
                       href={slugSelector(`/tags/${slugify(tag)}`, lang)}
                     >
                       {humanize(tag)}

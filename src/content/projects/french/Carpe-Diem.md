@@ -1,5 +1,6 @@
 ---
 title: "Carpe Diem Santorini"
+meta_title: ""
 date: 2019-02-07T10:47:55+06:00
 description: "this is meta description"
 bg_image: "/images/backgrounds/page-title.jpg"
@@ -7,6 +8,7 @@ image: "/images/project/project-3.jpg"
 client: "Australia"
 category: "Plan"
 status: "In Process"
+draft: false
 ---
 
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.

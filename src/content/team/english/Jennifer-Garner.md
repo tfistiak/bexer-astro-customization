@@ -1,5 +1,6 @@
 ---
 title: "Jennifer Garner"
+meta_title: ""
 description: "this is meta description"
 image: "/images/team/team-3.jpg"
 designation: "Developer"
@@ -31,6 +32,7 @@ skills:
 
   - label: Communication
     percentage: 95%
+draft: false
 ---
 
 #### Work History & Feedback

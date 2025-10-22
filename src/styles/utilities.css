@@ -1,22 +1,18 @@
-@utility bg-gradient {
-  @apply bg-gradient-to-b from-[rgba(249,249,249,1)] from-[0.53%] to-white to-[83.28%];
+/* form style */
+@utility form-input {
+  @apply mb-3 w-full shadow border-none px-6 py-4 bg-body dark:bg-darkmode-body! focus:active:outline-0;
 }
 
-@utility rounded-sm {
-  @apply rounded-[4px];
-}
-.rounded {
-  @apply rounded-[6px];
-}
-.rounded-lg {
-  @apply rounded-[12px];
-}
-.rounded-xl {
-  @apply rounded-[16px];
+@utility form-label {
+  @apply mb-4 block font-secondary text-xl font-normal text-text-dark dark:text-darkmode-text-dark;
 }
 
 @utility shadow {
   box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.05);
+
+  .dark & {
+    box-shadow: 0px 4px 40px rgba(255, 255, 255, 0.05);
+  }
 }
 
 @utility stretched-link {
@@ -52,6 +48,7 @@
     border-radius: inherit;
   }
 }
+
 @utility ripple-white {
   &:hover {
     &::after {

@@ -1,12 +1,16 @@
-import searchData from ".json/search.json";
-import React, { useEffect, useState } from "react";
-import SearchResult, { type ISearchItem } from "./SearchResult";
 import config from "@/config/config.json";
+import languages from "@/config/language.json";
+import React, { useEffect, useState } from "react";
+import searchData from "../../../.json/search.json";
+import SearchResult, { type ISearchItem } from "./SearchResult";
 const { default_language } = config.settings;
 
 const SearchModal = ({ lang }: { lang: string | undefined }) => {
   lang = lang || default_language;
   const [searchString, setSearchString] = useState("");
+
+  type RawSearchItem = Omit<ISearchItem, "lang">;
+  const rawSearchData = searchData as unknown as RawSearchItem[];
 
   // handle input change
   const handleSearch = (e: React.FormEvent<HTMLInputElement>) => {
@@ -15,7 +19,9 @@ const SearchModal = ({ lang }: { lang: string | undefined }) => {
 
   // generate search result
   const doSearch = (searchData: ISearchItem[]) => {
-    const regex = new RegExp(`${searchString}`, "gi");
+    const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const safeQuery = escapeRegExp(searchString);
+    const regex = new RegExp(`${safeQuery}`, "gi");
     if (searchString === "") {
       return [];
     } else {
@@ -42,8 +48,20 @@ const SearchModal = ({ lang }: { lang: string | undefined }) => {
     }
   };
 
+  const getLanguageCodeForItem = (item: RawSearchItem): string => {
+    // Try to infer the language from the slug path segment (e.g., blog/english/my-post)
+    const segments = item.slug.split("/");
+    const match = languages.find((l) => segments.includes(l.contentDir));
+    return match ? match.languageCode : default_language;
+  };
+
   // filter language specific search data
-  const filterSearchData = searchData.filter((item) => item.lang === lang);
+  const filterSearchData: ISearchItem[] = rawSearchData
+    .filter((item) => getLanguageCodeForItem(item) === lang)
+    .map((item) => ({
+      ...item,
+      lang: getLanguageCodeForItem(item),
+    }));
 
   // get search result
   const startTime = performance.now();

@@ -15,7 +15,7 @@ export async function getStaticPaths() {
     supportedLang.map(async (lang) => {
       const projects = await getSinglePage(
         "projects",
-        lang as keyof ContentEntryMap,
+        lang as keyof ContentEntryMap
       );
 
       return projects.map((project) => ({
@@ -27,7 +27,7 @@ export async function getStaticPaths() {
           project,
         },
       }));
-    }),
+    })
   );
   return paths.flat();
 }
@@ -86,7 +86,7 @@ const {
           }
 
           <div>
-            <div class="bg-secondary p-8">
+            <div class="bg-secondary dark:bg-darkmode-secondary p-8">
               <div class="row">
                 <div class="md:col-3 col-6 mb-4 md:mb-0">
                   <div class="md:border-r border-border/20 ml-4">
@@ -155,42 +155,50 @@ const {
 
         <div class="col-10 lg:col-4">
           <!-- quick contact -->
-          <div class="bg-white px-8 py-10 box-shadow mb-12 sticky top-28">
+          <div
+            class="bg-white dark:bg-black px-8 py-10 box-shadow mb-12 sticky top-28"
+          >
             <h5 class="mb-5">{quick_contact}</h5>
             <form action={contact_form_action}>
               <input
                 type="text"
                 name="name"
                 id="name"
-                class="form-control form-control-sm w-full border-0 rounded-0 box-shadow mb-3"
+                class="form-input"
                 placeholder={placeholder_name}
+                required
               />
               <input
                 type="email"
                 name="mail"
                 id="mail"
-                class="form-control form-control-sm w-full border-0 rounded-0 box-shadow mb-3"
+                class="form-input"
                 placeholder={placeholder_email}
+                required
               />
               <input
                 type="tel"
                 name="phone"
                 id="phone"
-                class="form-control form-control-sm w-full border-0 rounded-0 box-shadow mb-3"
+                class="form-input"
                 placeholder={placeholder_phone}
+                required
               />
               <input
                 type="text"
                 name="subject"
                 id="subject"
-                class="form-control form-control-sm w-full border-0 rounded-0 box-shadow mb-3"
+                class="form-input"
                 placeholder={placeholder_subject}
+                required
               />
               <textarea
                 name="message"
                 id="message"
-                class="form-control form-control-sm w-full border-0 rounded-0 box-shadow mb-3 py-3 px-4"
-                placeholder={placeholder_message}></textarea>
+                class="form-input"
+                placeholder={placeholder_message}
+                rows="6"
+                required></textarea>
               <button type="submit" value="send" class="btn btn-primary">
                 {send_message}
               </button>

@@ -1,12 +1,12 @@
 {
   "site": {
     "title": "Bexer-Astro",
-    "base_url": "https://bexer-astro.onrender.com",
+    "base_url": "https://bexer-astro.netlify.app/",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
     "logo": "/images/logo.png",
-     "logo_darkmode": "/images/logo-darkmode.png",
+    "logo_darkmode": "/images/logo-darkmode.png",
     "logo_width": "150",
     "logo_height": "42",
     "logo_text": "Bexer"
@@ -45,6 +45,10 @@
     "enable": true,
     "label": "Get A Quote",
     "link": "/contact"
+  },
+  "google_tag_manager": {
+    "enable": false,
+    "gtm_id": "GTM-XXXXXX"
   },
 
   "metadata": {

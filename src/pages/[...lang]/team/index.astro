@@ -15,6 +15,11 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params;
 const teamIndex = await getListPage("team", lang as keyof ContentEntryMap);
+
+if (teamIndex[0].data.draft) {
+  return Astro.redirect("/404");
+}
+
 const team = await getSinglePage("team", lang as keyof ContentEntryMap);
 ---
 

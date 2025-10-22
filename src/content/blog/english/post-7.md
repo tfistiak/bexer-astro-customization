@@ -6,7 +6,7 @@ date: 2022-04-04T05:00:00Z
 image: "/images/blog/post-7.png"
 categories: ["Afiliated Marketing"]
 author: "John Doe"
-tags: ["Consultancy", "Marketing", "Business"]
+tags: ["Consultancy", "Marketing"]
 draft: false
 ---
 

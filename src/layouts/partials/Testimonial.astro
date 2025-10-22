@@ -42,23 +42,23 @@ const { testimonial } = Astro.props;
                             data-dot-image="/images/testimonial/client-2.jpg"
                           >
                             <p
-                              class="italic mb-6 text-text-dark"
+                              class="italic mb-6 text-text-dark dark:text-darkmode-text-dark"
                               set:html={markdownify(t.content)}
                             />
-                            <FaQuoteLeft className="text-primary/30 absolute top-0 left-1/2 text-[100px] -translate-x-[50px]" />
+                            <FaQuoteLeft className="text-primary/30 dark:text-darkmode-primary/30 absolute top-0 left-1/2 text-[100px] -translate-x-[50px]" />
                             <h4
                               class="mb-2 text-h5"
                               set:html={markdownify(t.name)}
                             />
                             <span
-                              class="text-primary"
+                              class="text-primary dark:text-darkmode-primary"
                               set:html={markdownify(t.designation)}
                             />
                           </div>
                         </div>
                       </div>
                     </div>
-                  ),
+                  )
                 )}
               </div>
             </div>

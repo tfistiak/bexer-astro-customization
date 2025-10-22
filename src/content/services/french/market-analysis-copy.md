@@ -1,5 +1,6 @@
 ---
 title: "Copie d'analyse de marché"
+meta_title: ""
 description: "this is meta description for service page."
 bg_image: "images/backgrounds/page-title.jpg"
 image: "/images/service/service-5.jpg"
@@ -9,6 +10,7 @@ pdf:
   title: "Télécharger la brochure"
   file: "#"
   size: "1.5mb"
+draft: false
 ---
 
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.

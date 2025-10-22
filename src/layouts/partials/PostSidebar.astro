@@ -52,7 +52,7 @@ const {
 
                 <div>
                   <a
-                    class="flex justify-between text-text-dark dark:text-darkmode-text-dark hover:text-primary !no-underline mb-2"
+                    class="flex justify-between text-text-dark dark:text-darkmode-text-dark hover:text-primary dark:hover:text-darkmode-primary !no-underline mb-2"
                     href={slugSelector(`${post.id}`, lang)}
                   >
                     {humanize(post.data.title)}
@@ -79,7 +79,7 @@ const {
           return (
             <li class="border-b border-border dark:border-darkmode-border pb-4">
               <a
-                class="flex justify-between hover:text-primary !no-underline"
+                class="flex justify-between hover:text-primary dark:hover:text-darkmode-primary !no-underline"
                 href={slugSelector(`/categories/${category}`, lang)}
               >
                 {humanize(category as unknown as string)} <span>({count})</span>
@@ -99,7 +99,7 @@ const {
           return (
             <li class="inline-block">
               <a
-                class="btn btn-primary bg-white dark:bg-darkmode-light text-text dark:text-darkmode-text font-normal border-none box-shadow duration-200 hover:bg-primary hover:text-white btn-sm hover-ripple"
+                class="btn btn-primary bg-white dark:bg-darkmode-light text-text dark:text-darkmode-text font-normal border-none box-shadow duration-200 hover:bg-primary dark:hover:bg-darkmode-primary hover:text-white btn-sm hover-ripple"
                 href={slugSelector(`/tags/${tag}`, lang)}
               >
                 {humanize(tag)}

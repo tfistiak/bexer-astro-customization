@@ -34,7 +34,7 @@ for (let i = 1; i <= totalPages; i++) {
               ? slugSelector(`/${section ? section : ""}`, lang)
               : slugSelector(
                   `/${section ? section : ""}/page/${currentPage - 1}`,
-                  lang,
+                  lang
                 )
           }
           class="rounded px-2 py-1.5 text-text-dark dark:text-darkmode-text-dark hover:bg-light hover:text-black  "
@@ -78,7 +78,7 @@ for (let i = 1; i <= totalPages; i++) {
         pagination === currentPage ? (
           <span
             aria-current="page"
-            class="rounded bg-primary px-4 py-2 text-white  "
+            class="rounded bg-primary dark:bg-darkmode-primary px-4 py-2 text-white"
           >
             {pagination}
           </span>
@@ -88,14 +88,14 @@ for (let i = 1; i <= totalPages; i++) {
               i === 0
                 ? `/${section ? section : ""}`
                 : `/${section ? section : ""}/page/${pagination}`,
-              lang,
+              lang
             )}
             aria-current="page"
             class="rounded px-4 py-2 text-text-dark dark:text-darkmode-text-dark  hover:bg-light hover:text-black  "
           >
             {pagination}
           </a>
-        ),
+        )
       )}
 
       {/* next page */}
@@ -103,7 +103,7 @@ for (let i = 1; i <= totalPages; i++) {
         <a
           href={slugSelector(
             `/${section ? section : ""}/page/${currentPage + 1}`,
-            lang,
+            lang
           )}
           class="rounded px-2 py-1.5 text-text-dark dark:text-darkmode-text-dark hover:bg-light hover:text-black  "
         >

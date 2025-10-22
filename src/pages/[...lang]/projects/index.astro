@@ -24,8 +24,13 @@ if (!lang) {
 
 const projectIndex = await getListPage(
   "projects",
-  lang as keyof ContentEntryMap,
+  lang as keyof ContentEntryMap
 );
+
+if (projectIndex[0].data.draft) {
+  return Astro.redirect("/404");
+}
+
 const projects = await getSinglePage("projects", lang as keyof ContentEntryMap);
 ---
 

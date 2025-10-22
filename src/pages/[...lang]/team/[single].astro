@@ -12,7 +12,7 @@ export async function getStaticPaths() {
     supportedLang.map(async (lang) => {
       const members = await getSinglePage(
         "team",
-        lang as keyof ContentEntryMap,
+        lang as keyof ContentEntryMap
       );
 
       return members.map((member) => ({
@@ -24,7 +24,7 @@ export async function getStaticPaths() {
           member,
         },
       }));
-    }),
+    })
   );
   return paths.flat();
 }
@@ -80,13 +80,13 @@ const { Content } = await render(member);
             {
               skills?.map((skill: { label: string; percentage: string }) => (
                 <div class="mt-3">
-                  <p class="font-semibold text-lg font-secondary text-text-dark">
+                  <p class="font-semibold text-lg font-secondary text-text-dark dark:text-text-light">
                     {skill.label} -- {skill.percentage}
                   </p>
 
                   <div class="w-full bg-light max-w-sm mt-2 mb-6 overflow-hidden">
                     <div
-                      class="bg-primary text-xs leading-none py-1"
+                      class="bg-primary dark:bg-darkmode-primary text-xs leading-none py-1"
                       style={{ width: `${skill.percentage}` }}
                     />
                   </div>

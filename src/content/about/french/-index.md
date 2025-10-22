@@ -1,7 +1,7 @@
 ---
 title: "À propos de nous"
 meta_title: "À propos"
-description: "Ceci est une description méta"
+description: "Nous sommes une équipe de professionnels dévoués engagés à fournir des services de haute qualité à nos clients."
 image: ""
 draft: false
 

@@ -1,5 +1,6 @@
 ---
 title: "Brendan Alestico"
+meta_title: ""
 description: "this is meta description"
 image: "/images/team/team-4.jpg"
 designation: "Marketer"
@@ -31,6 +32,7 @@ skills:
 
   - label: Communication
     percentage: 95%
+draft: false
 ---
 
 #### Historique de travail et commentaires
